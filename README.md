@@ -37,14 +37,14 @@ with periodic boundary conditions in a cubic box of side $L$.
 
 ### Key Parameters
 
-| Parameter | Symbol | Description | Typical Range |
-|:---------:|:------:|:------------|:-------------:|
-| N | $N$ | Number of particles | 50-5000 |
-| L | $L$ | Box size | 5-50 |
-| v0 | $v_0$ | Particle speed | 0.1-1.0 |
-| r | $r$ | Interaction radius | 1.0-5.0 |
-| eta | $\eta$ | Noise magnitude | 0.0-2.0 |
-| dt | $\Delta t$ | Time step | 0.1-1.0 |
+| Parameter | Symbol | Description |
+|:---------:|:------:|:------------|
+| N | $N$ | Number of particles | 
+| L | $L$ | Box size | 
+| v0 | $v_0$ | Particle speed | 
+| r | $r$ | Interaction radius | 
+| eta | $\eta$ | Noise magnitude | 
+| dt | $\Delta t$ | Time step |
 
 ### Order Parameter
 
