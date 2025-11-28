@@ -14,7 +14,7 @@
 [![Pillow](https://img.shields.io/badge/Pillow-%23000000.svg)](https://python-pillow.org/)
 [![tqdm](https://img.shields.io/badge/tqdm-%23FFC107.svg)](https://tqdm.github.io/)
 
-A high-performance Python library for simulating collective motion using the 3D Vicsek model with Numba JIT acceleration and comprehensive spatial entropy metrics.
+Python library for simulating collective motion using the 3D Vicsek model with Numba JIT acceleration and spatial entropy metrics.
 
 ## Model
 
