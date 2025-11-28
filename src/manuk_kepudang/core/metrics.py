@@ -1,5 +1,5 @@
 """
-Rigorous Spatial Entropy and Complexity Metrics for Vicsek Model.
+Spatial Entropy and Complexity Metrics for Vicsek Model.
 
 This module implements information-theoretic and statistical physics measures
 to quantify spatial order/disorder in collective motion systems.
@@ -532,13 +532,9 @@ def compute_spatial_complexity_index(
     
     The Spatial Complexity Index (SCI) is defined as:
     
-    SCI = w1*H_pos + w2*H_orient + w3*H_local + w4*H_pair + w5*(1-MI)
+    SCI = (H_pos + H_orient + H_local + H_pair + H_voronoi + (1-MI)) / 6
     
-    Where weights are chosen to balance contributions.
-    Note: Voronoi entropy is computed but NOT included in SCI due to 
-    computational cost and approximation errors with periodic boundaries.
-    
-    Also returns individual components for analysis.
+    Where all measures are normalized to [0, 1].
     
     Args:
         positions: (N, 3) particle positions
@@ -565,16 +561,16 @@ def compute_spatial_complexity_index(
     local_phi_mean = np.mean(local_phi)
     local_phi_std = np.std(local_phi)
     
-    # Composite index (equal weights, excluding Voronoi)
+    # Composite index (equal weights, 6 components)
     # High SCI = high disorder/entropy
-    # 5 components: positional, orientational, local_align, pair, (1-MI)
-    weights = np.array([1.0, 1.0, 1.0, 1.0, 1.0]) / 5.0
+    weights = np.array([1.0, 1.0, 1.0, 1.0, 1.0, 1.0]) / 6.0
     
     components = np.array([
         H_positional,
         H_orientational,
         H_local_align,
         H_pair,
+        H_voronoi,
         1.0 - MI_pos_vel  # Invert MI: low coupling = high disorder
     ])
     
@@ -585,7 +581,7 @@ def compute_spatial_complexity_index(
         'orientational_entropy': H_orientational,
         'local_alignment_entropy': H_local_align,
         'pair_correlation_entropy': H_pair,
-        'voronoi_entropy': H_voronoi,  # Still computed, just not in SCI
+        'voronoi_entropy': H_voronoi,
         'position_velocity_mutual_info': MI_pos_vel,
         'local_alignment_mean': local_phi_mean,
         'local_alignment_std': local_phi_std,

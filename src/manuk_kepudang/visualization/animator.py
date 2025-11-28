@@ -243,9 +243,13 @@ class Animator:
         velocities = result['velocities']
         time = result['time']
         phi = result['order_parameter']
-        L = result['system'].box_size
-        N = result['system'].n_particles
-        eta = result['system'].noise
+        system = result['system']
+        L = system.box_size
+        N = system.n_particles
+        eta = system.noise
+        v0 = system.speed
+        r = system.interaction_radius
+        rho = N / (L ** 3)
         
         n_frames_total = len(time)
         
@@ -274,7 +278,7 @@ class Animator:
                                       ncols=70,
                                       bar_format='{desc}: {percentage:3.0f}%|{bar}| {n}/{total}')):
             
-            fig = plt.figure(figsize=(10, 10), facecolor=self.COLOR_BG, dpi=anim_dpi)
+            fig = plt.figure(figsize=(12, 10), facecolor=self.COLOR_BG, dpi=anim_dpi)
             ax = fig.add_subplot(111, projection='3d', facecolor=self.COLOR_BG)
             
             pos = positions[idx]
@@ -299,7 +303,7 @@ class Animator:
             
             # Title
             ax.set_title(
-                f'{title}\nN = {N} | η = {eta:.2f}',
+                f'{title}',
                 fontsize=14, fontweight='bold', color=self.COLOR_TITLE, pad=15
             )
             
@@ -323,7 +327,23 @@ class Animator:
             ax.set_yticklabels([])
             ax.set_zticklabels([])
             
-            # Simple time and phi info (small, unobtrusive)
+            # Parameter info box (top-left)
+            param_text = (
+                f'N = {N}\n'
+                f'L = {L:.1f}\n'
+                f'v₀ = {v0:.2f}\n'
+                f'r = {r:.1f}\n'
+                f'η = {eta:.2f}\n'
+                f'ρ = {rho:.3f}'
+            )
+            ax.text2D(0.02, 0.98, param_text,
+                     transform=ax.transAxes, fontsize=10, fontweight='bold',
+                     color=self.COLOR_TEXT, ha='left', va='top',
+                     alpha=0.9, family='monospace',
+                     bbox=dict(boxstyle='round,pad=0.4', facecolor=self.COLOR_BG_PANEL,
+                              edgecolor=self.COLOR_GRID, alpha=0.9))
+            
+            # Time and phi info (bottom center)
             info_text = f't = {time[idx]:.1f}  |  φ = {phi[idx]:.3f}'
             ax.text2D(0.5, 0.02, info_text,
                      transform=ax.transAxes, fontsize=11, fontweight='bold',

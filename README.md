@@ -14,7 +14,7 @@
 [![Pillow](https://img.shields.io/badge/Pillow-%23000000.svg)](https://python-pillow.org/)
 [![tqdm](https://img.shields.io/badge/tqdm-%23FFC107.svg)](https://tqdm.github.io/)
 
-Python library for simulating collective motion using the 3D Vicsek model with Numba JIT acceleration and spatial entropy metrics.
+A high-performance Python library for simulating collective motion using the 3D Vicsek model with Numba JIT acceleration and comprehensive spatial entropy metrics.
 
 ## Model
 
@@ -37,14 +37,14 @@ with periodic boundary conditions in a cubic box of side $L$.
 
 ### Key Parameters
 
-| Parameter | Symbol | Description |
-|:---------:|:------:|:------------|
-| N | $N$ | Number of particles | 
-| L | $L$ | Box size | 
-| v0 | $v_0$ | Particle speed | 
-| r | $r$ | Interaction radius | 
-| eta | $\eta$ | Noise magnitude | 
-| dt | $\Delta t$ | Time step |
+| Parameter | Symbol | Description | Typical Range |
+|:---------:|:------:|:------------|:-------------:|
+| N | $N$ | Number of particles | 50-5000 |
+| L | $L$ | Box size | 5-50 |
+| v0 | $v_0$ | Particle speed | 0.1-1.0 |
+| r | $r$ | Interaction radius | 1.0-5.0 |
+| eta | $\eta$ | Noise magnitude | 0.0-2.0 |
+| dt | $\Delta t$ | Time step | 0.1-1.0 |
 
 ### Order Parameter
 
@@ -66,9 +66,9 @@ This library includes rigorous information-theoretic measures to quantify spatia
 | Pair Correlation Entropy | From radial distribution function g(r) | Ideal gas | Crystalline |
 | Voronoi Cell Entropy | Geometric packing disorder | Irregular | Regular |
 | Position-Velocity MI | Mutual information coupling | Spatial structure | Homogeneous |
-| **Spatial Complexity Index** | Weighted composite measure* | Disordered | Ordered |
+| **Spatial Complexity Index** | Weighted composite measure | Disordered | Ordered |
 
-*SCI combines positional, orientational, local alignment, pair correlation entropies, and (1-MI). Voronoi entropy is computed separately but excluded from the composite due to PBC approximations.
+*SCI = (H_positional + H_orientational + H_local_align + H_pair + H_voronoi + (1-MI)) / 6
 
 ## Installation
 
@@ -163,10 +163,10 @@ The library generates:
 
 | Case | Description | N | η |
 |:----:|:------------|:-:|:-:|
-| 1 | Ordered phase | 200 | 0.3 | 
-| 2 | Disordered phase | 200 | 2.0 | 
-| 3 | Large system | 500 | 0.5 | 
-| 4 | Phase transition | 300 | 
+| 1 | Ordered phase | 200 | 0.3 |
+| 2 | Disordered phase | 200 | 2.0 |
+| 3 | Large system | 500 | 0.5 |
+| 4 | Phase transition | 300 | 1.0 |
 
 ## Dependencies
 
