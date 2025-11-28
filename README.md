@@ -14,7 +14,7 @@
 [![Pillow](https://img.shields.io/badge/Pillow-%23000000.svg)](https://python-pillow.org/)
 [![tqdm](https://img.shields.io/badge/tqdm-%23FFC107.svg)](https://tqdm.github.io/)
 
-A high-performance Python library for simulating collective motion using the 3D Vicsek model with Numba JIT acceleration and comprehensive spatial entropy metrics.
+A Python library for simulating collective motion using the 3D Vicsek model with Numba JIT acceleration and spatial entropy metrics.
 
 ## Model
 
@@ -181,14 +181,14 @@ The library generates:
 
 ## License
 
-MIT © Sandy H. S. Herho, Nurjanna J. Trilaksono, Rusmawan Suwarman
+MIT © Sandy H. S. Herho, Iwan P. Anwar, Nurjanna J. Trilaksono, Rusmawan Suwarman
 
 ## Citation
 
 ```bibtex
 @software{herho2025_manuk_kepudang,
   title   = {manuk-kepudang: A Python library for 3D Vicsek model simulation},
-  author  = {Herho, Sandy H. S. and Trilaksono, Nurjanna J. and Suwarman, Rusmawan},
+  author  = {Herho, Sandy H. S. and Anwar, Iwan P. and Trilaksono, Nurjanna J. and Suwarman, Rusmawan},
   year    = {2025},
   url     = {https://github.com/sandyherho/manuk-kepudang}
 }

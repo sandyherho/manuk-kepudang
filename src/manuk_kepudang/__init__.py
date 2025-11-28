@@ -1,7 +1,7 @@
 """manuk-kepudang: 3D Vicsek Model Collective Motion Simulator"""
 
 __version__ = "0.0.1"
-__author__ = "Sandy H. S. Herho, Nurjanna J. Trilaksono, Rusmawan Suwarman"
+__author__ = "Sandy H. S. Herho, Iwan P. Anwar, Nurjanna J. Trilaksono, Rusmawan Suwarman"
 __email__ = "sandy.herho@email.ucr.edu"
 __license__ = "MIT"
 

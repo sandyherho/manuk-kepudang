@@ -340,7 +340,6 @@ class DataHandler:
                 nc.mean_spatial_complexity_index = float(metrics['spatial_complexity_index_mean'])
             
             # References
-            nc.references = "Vicsek et al. (1995) Phys. Rev. Lett. 75(6):1226"
-            nc.author = "Sandy H. S. Herho, Nurjanna J. Trilaksono, Rusmawan Suwarman"
+            nc.author = "Sandy H. S. Herho, Iwan P. Anwar, Nurjanna J. Trilaksono, Rusmawan Suwarman"
             nc.email = "sandy.herho@email.ucr.edu"
             nc.license = "MIT"
