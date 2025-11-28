@@ -227,7 +227,7 @@ class Animator:
                          duration_seconds: float = 15.0):
         """
         Create stunning animated 3D visualization of collective motion
-        with graceful camera movement.
+        with dramatic camera movement.
         
         Args:
             result: Simulation result dictionary
@@ -266,12 +266,18 @@ class Animator:
         anim_dpi = 120
         frames = []
         
-        # Smooth, graceful rotation with easing
+        # Dramatic camera motion: full 360° rotation with smooth elevation changes
         t_norm = np.linspace(0, 1, n_frames)
-        ease_func = lambda t: 0.5 * (1 - np.cos(np.pi * t))
-        azim_start, azim_end = 25, 175
+        
+        # Full rotation (360°) with easing for smooth start/end
+        ease_func = lambda t: t - 0.05 * np.sin(2 * np.pi * t)  # Slight easing
+        azim_start, azim_end = 0, 360
         azims = azim_start + (azim_end - azim_start) * ease_func(t_norm)
-        elevs = 22 + 12 * np.sin(2 * np.pi * t_norm * 0.8)
+        
+        # Dramatic elevation: sweep from low to high and back
+        elevs = 15 + 25 * np.sin(np.pi * t_norm)  # 15° to 40° and back
+        
+        # Optional: add slight "zoom" effect via distance (not directly supported, but we can adjust)
         
         for i, idx in enumerate(tqdm(frame_indices,
                                       desc="      Rendering",
@@ -304,7 +310,7 @@ class Animator:
             # Title
             ax.set_title(
                 f'{title}',
-                fontsize=14, fontweight='bold', color=self.COLOR_TITLE, pad=15
+                fontsize=16, fontweight='bold', color=self.COLOR_TITLE, pad=20
             )
             
             # Style 3D panes
@@ -346,9 +352,9 @@ class Animator:
             # Time and phi info (bottom center)
             info_text = f't = {time[idx]:.1f}  |  φ = {phi[idx]:.3f}'
             ax.text2D(0.5, 0.02, info_text,
-                     transform=ax.transAxes, fontsize=11, fontweight='bold',
+                     transform=ax.transAxes, fontsize=12, fontweight='bold',
                      color=self.COLOR_ACCENT, ha='center', va='bottom',
-                     alpha=0.9)
+                     alpha=0.95)
             
             fig.tight_layout()
             
@@ -366,8 +372,8 @@ class Animator:
             buf.close()
             plt.close(fig)
         
-        # Slower, graceful playback
-        frame_duration_ms = int(1000 / (self.fps * 0.6))
+        # Smooth playback
+        frame_duration_ms = int(1000 / self.fps)
         
         print(f"      Saving GIF ({n_frames} frames)...")
         
