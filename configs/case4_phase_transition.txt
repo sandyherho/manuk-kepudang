@@ -1,0 +1,22 @@
+# Case 4: Phase Transition
+# Intermediate noise near the critical point
+scenario_name = Case 4 - Phase Transition
+n_particles = 300
+box_size = 12.0
+speed = 0.5
+interaction_radius = 2.0
+noise = 1.0
+dt = 1.0
+n_steps = 800
+seed = 456
+use_numba = true
+compute_entropy = true
+save_csv = true
+save_netcdf = true
+save_png = true
+save_gif = true
+output_dir = outputs
+animation_fps = 30
+animation_dpi = 100
+animation_skip = 8
+animation_duration = 20.0
